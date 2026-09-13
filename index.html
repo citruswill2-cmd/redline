@@ -2,29 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>REDLINE — Sites for people priced out of agencies</title>
-  <meta name="description" content="Warm, clear websites for budget buyers who still want something that looks pro. One file you own. First draft fast. No agency theater." />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F3EEE4'/%3E%3Crect x='4' y='15' width='24' height='2' fill='%23FF2B3A'/%3E%3C/svg%3E" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>REDLINE — You need a site. I build it.</title>
+  <meta name="description" content="Custom websites for shops, lots, bands, and anyone who wants a business online but does not know how. Live work. You own the file." />
+  <meta name="theme-color" content="#0A0A0A" />
+  <meta property="og:title" content="REDLINE — You need a site. I build it." />
+  <meta property="og:description" content="Custom websites for people who want a business online and do not know how. See the live work." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0A0A'/%3E%3Crect x='14' y='4' width='4' height='24' fill='%23FF2A2A'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            paper: "#F3EEE4",
-            ink: "#141414",
-            mute: "#5C574E",
-            line: "#D9D1C3",
-            volt: "#4D8BFF",
-            slash: "#FF2B3A"
+            void: "#0A0A0A",
+            paper: "#F4F4F5",
+            electric: "#00B4FF",
+            signal: "#FF2A2A",
+            mute: "#A1A1AA"
           },
           fontFamily: {
-            display: ["Syne", "system-ui", "sans-serif"],
-            sans: ["Outfit", "system-ui", "sans-serif"]
+            sans: ["Archivo", "system-ui", "sans-serif"]
           }
         }
       }
@@ -32,216 +35,332 @@
   </script>
   <style>
     html { scroll-behavior: smooth; }
-    body { background: #F3EEE4; color: #141414; }
-    .grain {
-      position: fixed; inset: 0; pointer-events: none; z-index: 40; opacity: .09;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    body { background: #0A0A0A; color: #F4F4F5; }
+    :focus-visible {
+      outline: 2px solid #00B4FF;
+      outline-offset: 3px;
     }
-    .hair {
-      height: 2px;
-      background: #FF2B3A;
+    .redline {
+      position: fixed;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: #FF2A2A;
+      z-index: 70;
+      pointer-events: none;
     }
-    .rule {
-      background-image: linear-gradient(#D9D1C3 1px, transparent 1px);
-      background-size: 100% 28px;
+    .tape {
+      display: flex;
+      gap: 2.5rem;
+      width: max-content;
+      animation: crawl 32s linear infinite;
     }
-    .price-cut { clip-path: polygon(0 0, 100% 0, 100% 86%, 92% 100%, 0 100%); }
+    @keyframes crawl {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .tape { animation: none; }
+      [data-hero] { opacity: 1 !important; transform: none !important; }
+    }
+    button, a, input, textarea, select { touch-action: manipulation; }
   </style>
 </head>
 <body class="font-sans antialiased overflow-x-hidden">
-  <div class="grain" aria-hidden="true"></div>
+  <div class="redline" aria-hidden="true"></div>
+  <a href="#work" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-5 focus:z-[80] bg-electric text-void px-3 py-2 text-sm font-semibold">Skip to work</a>
 
-  <header class="relative z-20 flex items-center justify-between px-5 md:px-10 py-5 border-b border-line">
-    <a href="#top" class="font-display font-extrabold tracking-tight text-xl flex items-center gap-3">
-      REDLINE
-      <span class="block w-8 h-[2px] bg-slash" aria-hidden="true"></span>
-    </a>
-    <nav class="hidden sm:flex items-center gap-6 text-sm text-mute">
-      <a href="#why" class="hover:text-ink transition-colors">Why</a>
-      <a href="#price" class="hover:text-ink transition-colors">Price</a>
-      <a href="#how" class="hover:text-ink transition-colors">How</a>
-      <a href="#hit" class="text-ink font-medium hover:text-volt transition-colors">Send a brief</a>
+  <header class="sticky top-0 z-50 flex items-center justify-between bg-void/90 backdrop-blur px-5 sm:px-8 py-4 text-paper pl-7 sm:pl-10">
+    <a href="#top" class="text-sm font-black tracking-tight">REDLINE<span class="text-signal">/</span></a>
+    <nav class="flex items-center gap-5 sm:gap-7 text-[11px] uppercase tracking-[0.18em]">
+      <a href="#work" class="hover:text-electric min-h-11 inline-flex items-center">Work</a>
+      <a href="#how" class="hover:text-electric min-h-11 inline-flex items-center">How</a>
+      <a href="#start" class="text-signal hover:text-electric min-h-11 inline-flex items-center font-semibold">Start</a>
     </nav>
-    <a href="mailto:ctwilliams07152001@gmail.com?subject=REDLINE%20brief" class="sm:hidden text-sm font-medium">Brief →</a>
   </header>
 
-  <section id="top" class="relative z-10 px-5 md:px-10 pt-16 md:pt-24 pb-14 md:pb-20 max-w-5xl">
-    <p class="text-slash font-medium tracking-wide text-xs uppercase mb-5">Studio for the priced-out</p>
-    <h1 class="font-display font-extrabold leading-[0.95] text-5xl md:text-7xl tracking-tight">
-      You need a site.<br />
-      Not a $12k kickoff.
-    </h1>
-    <div class="hair w-24 my-8"></div>
-    <p class="text-lg md:text-xl text-mute max-w-xl leading-relaxed">
-      REDLINE builds warm, clear first drafts for people agencies priced out.
-      One HTML file you own. Looks pro. Loads in about half a second.
-    </p>
-    <div class="mt-10 flex flex-wrap gap-3">
-      <a href="mailto:ctwilliams07152001@gmail.com?subject=REDLINE%20brief" class="inline-flex items-center gap-2 bg-ink text-paper px-5 py-3 font-display font-bold text-sm hover:bg-slash transition-colors">
-        Send a brief
-        <span aria-hidden="true">→</span>
-      </a>
-      <a href="#price" class="inline-flex items-center gap-2 border border-ink/20 px-5 py-3 font-display font-bold text-sm hover:border-volt hover:text-volt transition-colors">
-        See honest prices
-      </a>
-    </div>
-  </section>
-
-  <div class="relative z-10 border-y border-line overflow-hidden py-3 text-xs tracking-wide uppercase text-mute">
-    <div class="flex gap-8 whitespace-nowrap px-5">
-      <span>One file you keep</span>
-      <span class="text-slash">/</span>
-      <span>No retainers</span>
-      <span class="text-slash">/</span>
-      <span>No slide deck</span>
-      <span class="text-slash">/</span>
-      <span>Price on the page</span>
-      <span class="text-slash">/</span>
-      <span>Draft before the catalog</span>
-      <span class="text-slash">/</span>
-      <span>You drop it on Vercel</span>
-    </div>
-  </div>
-
-  <section id="why" class="relative z-10 px-5 md:px-10 py-16 md:py-24">
-    <p class="text-xs uppercase tracking-wide text-mute mb-3">Why this exists</p>
-    <h2 class="font-display font-extrabold text-3xl md:text-5xl tracking-tight max-w-3xl">
-      Most “affordable” sites look like they were affordable.
-    </h2>
-    <p class="mt-5 max-w-xl text-mute leading-relaxed">
-      Templates shout. Agencies stall. REDLINE sits in the gap:
-      custom enough to feel like you, cheap enough to start this month.
-    </p>
-    <div class="mt-12 grid md:grid-cols-3 gap-px bg-line border border-line">
-      <article class="bg-paper p-6 md:p-8">
-        <p class="font-display font-bold text-slash text-sm mb-3">01</p>
-        <h3 class="font-display font-bold text-xl mb-3">You own the file</h3>
-        <p class="text-mute leading-relaxed">No locked theme. No monthly builder tax. One <code class="text-ink text-sm">index.html</code> you can host anywhere.</p>
-      </article>
-      <article class="bg-paper p-6 md:p-8">
-        <p class="font-display font-bold text-slash text-sm mb-3">02</p>
-        <h3 class="font-display font-bold text-xl mb-3">Price before the call</h3>
-        <p class="text-mute leading-relaxed">Bands are on this page. If your budget is “not sure,” we map it to a launch slice — not a discovery workshop.</p>
-      </article>
-      <article class="bg-paper p-6 md:p-8">
-        <p class="font-display font-bold text-slash text-sm mb-3">03</p>
-        <h3 class="font-display font-bold text-xl mb-3">Looks meant, not made</h3>
-        <p class="text-mute leading-relaxed">Short lines. One accent. Fast load. The site should feel like a person built it for a person.</p>
-      </article>
-    </div>
-  </section>
-
-  <section id="price" class="relative z-10 px-5 md:px-10 py-16 md:py-20 bg-ink text-paper">
-    <p class="text-xs uppercase tracking-wide text-paper/50 mb-3">Money, said out loud</p>
-    <h2 class="font-display font-extrabold text-3xl md:text-5xl tracking-tight">
-      Affordable is a number.<br />Not a vibe.
-    </h2>
-    <p class="mt-5 max-w-xl text-paper/70 leading-relaxed">
-      “Not sure” still gets a scope. We do not hide the band behind a form.
-    </p>
-    <div class="mt-12 grid md:grid-cols-3 gap-4">
-      <article class="price-cut border border-paper/15 p-6 bg-paper/[0.04]">
-        <p class="text-xs uppercase tracking-wide text-paper/50">Swap slice</p>
-        <p class="font-display font-extrabold text-4xl mt-3">$500</p>
-        <p class="mt-4 text-paper/70 text-sm leading-relaxed">Static page, your copy swapped in, you keep the file. Good when the story is already clear.</p>
-      </article>
-      <article class="price-cut border border-slash p-6 bg-slash text-paper">
-        <p class="text-xs uppercase tracking-wide text-paper/80">Launch slice</p>
-        <p class="font-display font-extrabold text-4xl mt-3">$800–$1,500</p>
-        <p class="mt-4 text-paper/90 text-sm leading-relaxed">The usual first site. Brand page, proof, price, mailto. Custom. Not a leftover template. This page is that slice.</p>
-      </article>
-      <article class="price-cut border border-paper/15 p-6 bg-paper/[0.04]">
-        <p class="text-xs uppercase tracking-wide text-paper/50">Phase 2</p>
-        <p class="font-display font-extrabold text-4xl mt-3">$2k+</p>
-        <p class="mt-4 text-paper/70 text-sm leading-relaxed">CMS, shop, embeds, newsletter — after one real page is live and earning its keep. Not before.</p>
-      </article>
-    </div>
-  </section>
-
-  <section id="how" class="relative z-10 px-5 md:px-10 py-16 md:py-24 rule">
-    <p class="text-xs uppercase tracking-wide text-mute mb-3">How a brief becomes a site</p>
-    <h2 class="font-display font-extrabold text-3xl md:text-5xl tracking-tight">Three moves. Then it’s yours.</h2>
-    <ol class="mt-12 grid md:grid-cols-3 gap-10">
-      <li>
-        <p class="font-display font-extrabold text-5xl text-slash leading-none">1</p>
-        <h3 class="font-display font-bold text-xl mt-4">You write the want</h3>
-        <p class="mt-3 text-mute leading-relaxed">Name, email, what the site has to do, a budget or “not sure.” That is a brief. Not a 14-page RFP.</p>
-      </li>
-      <li>
-        <p class="font-display font-extrabold text-5xl text-slash leading-none">2</p>
-        <h3 class="font-display font-bold text-xl mt-4">You get a first draft</h3>
-        <p class="mt-3 text-mute leading-relaxed">Custom HTML. Tailwind. Light motion. Built to the brief — not cloned from the last client.</p>
-      </li>
-      <li>
-        <p class="font-display font-extrabold text-5xl text-slash leading-none">3</p>
-        <h3 class="font-display font-bold text-xl mt-4">You ship it</h3>
-        <p class="mt-3 text-mute leading-relaxed">Drop the file on Vercel. Keep the repo. Change copy whenever you want. Phase 2 only if the page needs it.</p>
-      </li>
-    </ol>
-  </section>
-
-  <section id="work" class="relative z-10 px-5 md:px-10 py-16 border-t border-line">
-    <p class="text-xs uppercase tracking-wide text-mute mb-3">What this studio actually makes</p>
-    <h2 class="font-display font-extrabold text-3xl md:text-4xl tracking-tight max-w-2xl">
-      Show pages. Shop pages. Studio pages. One job each.
-    </h2>
-    <div class="mt-10 grid md:grid-cols-3 gap-4">
-      <article class="border border-line p-5 hover:border-ink transition-colors">
-        <p class="text-xs text-slash font-medium uppercase tracking-wide">Media</p>
-        <h3 class="font-display font-bold text-lg mt-2">Podcast + vlog one-pager</h3>
-        <p class="mt-2 text-sm text-mute leading-relaxed">Sells the show before the catalog exists. Hero, drops, filmstrip, subscribe row.</p>
-      </article>
-      <article class="border border-line p-5 hover:border-ink transition-colors">
-        <p class="text-xs text-slash font-medium uppercase tracking-wide">Person</p>
-        <h3 class="font-display font-bold text-lg mt-2">Artist or host site</h3>
-        <p class="mt-2 text-sm text-mute leading-relaxed">Short lines. One play button. No extra chrome. The page should sound like the work.</p>
-      </article>
-      <article class="border border-line p-5 hover:border-ink transition-colors">
-        <p class="text-xs text-slash font-medium uppercase tracking-wide">Studio</p>
-        <h3 class="font-display font-bold text-lg mt-2">This page</h3>
-        <p class="mt-2 text-sm text-mute leading-relaxed">Trust first. Price visible. Built for buyers who were told “we’ll send a proposal.”</p>
-      </article>
-    </div>
-  </section>
-
-  <section id="hit" class="relative z-10 px-5 md:px-10 py-16 md:py-24 border-t border-line">
-    <div class="max-w-2xl">
-      <p class="text-xs uppercase tracking-wide text-mute mb-3">Start</p>
-      <h2 class="font-display font-extrabold text-3xl md:text-5xl tracking-tight">
-        Four lines. That’s a brief.
-      </h2>
-      <p class="mt-5 text-mute leading-relaxed">
-        Name. Email. What you want the site to do. What you can spend — or the words “not sure.”
-        Send that. You get a first draft scoped to the number, not a pitch deck.
+  <main id="main">
+    <section id="top" class="relative min-h-dvh flex flex-col justify-end px-5 sm:px-8 pb-16 md:pb-20 pl-7 sm:pl-10">
+      <p class="text-[11px] tracking-[0.28em] uppercase text-mute" data-hero="kicker">Studio · you don't have to know how</p>
+      <h1 class="mt-4 font-black tracking-tighter leading-[0.78] text-[22vw] md:text-[9.5rem]" data-hero="name">
+        RED<br class="md:hidden" />LINE
+      </h1>
+      <p class="mt-6 max-w-md text-lg text-paper/80 leading-relaxed" data-hero="offer">
+        You need a site. I build it.
+        Shop, lot, band, brand — you don't have to know the difference.
       </p>
-      <a href="mailto:ctwilliams07152001@gmail.com?subject=REDLINE%20brief&body=NAME:%0AEMAIL:%0AWANTS:%0AMONEY:" class="mt-8 inline-flex items-center gap-2 bg-slash text-paper px-6 py-3 font-display font-bold hover:bg-ink transition-colors">
-        Email Chris
-        <span aria-hidden="true">→</span>
-      </a>
-      <p class="mt-4 text-sm text-mute">
-        <a class="underline decoration-slash/60 hover:text-volt" href="mailto:ctwilliams07152001@gmail.com">ctwilliams07152001@gmail.com</a>
-      </p>
-    </div>
-  </section>
+      <div class="mt-8 flex flex-wrap gap-3" data-hero="cta">
+        <a href="#start" class="inline-flex min-h-12 items-center bg-signal text-white px-5 py-3 text-sm font-semibold hover:bg-electric hover:text-void transition-colors">Send a brief</a>
+        <a href="#work" class="inline-flex min-h-12 items-center border border-paper/20 px-5 py-3 text-sm font-semibold hover:border-electric hover:text-electric transition-colors">See live work</a>
+      </div>
+    </section>
 
-  <footer class="relative z-10 px-5 md:px-10 py-8 border-t border-line flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-mute">
-    <p class="font-display font-bold text-ink">REDLINE <span class="text-slash">—</span> client-owned files</p>
-    <p>Tailwind CDN + anime.js · no build step · ~0.5s motion</p>
+    <div class="border-y border-paper/10 overflow-hidden py-3 text-[11px] tracking-[0.22em] uppercase text-mute pl-7 sm:pl-10">
+      <div class="tape" aria-hidden="true">
+        <span>shop</span><span class="text-signal">/</span>
+        <span>lot</span><span class="text-electric">/</span>
+        <span>band</span><span class="text-signal">/</span>
+        <span>bench</span><span class="text-electric">/</span>
+        <span>one-pager</span><span class="text-signal">/</span>
+        <span>listings</span><span class="text-electric">/</span>
+        <span>you own the file</span><span class="text-signal">/</span>
+        <span>shop</span><span class="text-electric">/</span>
+        <span>lot</span><span class="text-signal">/</span>
+        <span>band</span><span class="text-electric">/</span>
+        <span>bench</span><span class="text-signal">/</span>
+        <span>one-pager</span><span class="text-electric">/</span>
+        <span>listings</span><span class="text-signal">/</span>
+        <span>you own the file</span>
+      </div>
+    </div>
+
+    <section class="px-5 sm:px-8 py-10 pl-7 sm:pl-10 grid grid-cols-1 sm:grid-cols-3 gap-6 border-b border-paper/10 text-sm">
+      <p><span class="block text-[11px] uppercase tracking-[0.2em] text-electric mb-2">Live</span>Sites people can open right now. Not mockups.</p>
+      <p><span class="block text-[11px] uppercase tracking-[0.2em] text-electric mb-2">Yours</span>One HTML file you keep. No locked theme.</p>
+      <p><span class="block text-[11px] uppercase tracking-[0.2em] text-electric mb-2">Simple</span>A paragraph is a brief. “I don’t know” counts.</p>
+    </section>
+
+    <section id="work" class="px-5 sm:px-8 py-16 md:py-24 pl-7 sm:pl-10">
+      <p class="text-[11px] tracking-[0.28em] uppercase text-mute">Work</p>
+      <h2 class="mt-3 font-black tracking-tight text-4xl md:text-6xl leading-[0.9] max-w-3xl">Already out in the world.</h2>
+      <p class="mt-4 max-w-xl text-mute leading-relaxed">Tap a name. That’s a real site. This is the part that matters if you are deciding whether to trust a stranger with your shop.</p>
+
+      <div class="mt-12 divide-y divide-paper/10 border-y border-paper/10">
+        <a href="https://iris0nyx.com" target="_blank" rel="noopener noreferrer" class="group grid md:grid-cols-12 gap-6 py-8 md:py-10 items-stretch">
+          <div class="md:col-span-5 bg-black border border-paper/10 p-6 min-h-[12rem] flex flex-col justify-end">
+            <p class="text-[10px] tracking-[0.28em] uppercase text-mute">Utah · independent</p>
+            <p class="mt-3 font-black leading-[0.8] text-5xl tracking-tighter">IRIS<br /><span class="text-signal">ONYX</span></p>
+            <p class="mt-3 text-sm text-paper/60">the softest knife</p>
+          </div>
+          <div class="md:col-span-7 flex flex-col justify-center">
+            <p class="text-[11px] uppercase tracking-[0.2em] text-electric">Artist site</p>
+            <h3 class="mt-2 font-black text-3xl md:text-4xl tracking-tight group-hover:text-electric transition-colors">Iris Onyx</h3>
+            <p class="mt-3 max-w-md text-mute leading-relaxed">Listen, shows, art. A dark, fast page for a working musician — built to feel right on a phone.</p>
+            <p class="mt-4 text-sm font-semibold text-paper group-hover:text-electric">iris0nyx.com →</p>
+          </div>
+        </a>
+
+        <a href="https://dnc-computerz.vercel.app" target="_blank" rel="noopener noreferrer" class="group grid md:grid-cols-12 gap-6 py-8 md:py-10 items-stretch">
+          <div class="md:col-span-5 bg-[#111] border border-paper/10 p-6 min-h-[12rem] flex flex-col justify-end">
+            <p class="text-[10px] tracking-[0.28em] uppercase text-electric">Bench lot · live holds</p>
+            <p class="mt-3 font-black leading-[0.85] text-3xl md:text-4xl tracking-tight">Towers. Laptops.<br />Parts. Screens.</p>
+          </div>
+          <div class="md:col-span-7 flex flex-col justify-center">
+            <p class="text-[11px] uppercase tracking-[0.2em] text-electric">Lot / inventory</p>
+            <h3 class="mt-2 font-black text-3xl md:text-4xl tracking-tight group-hover:text-electric transition-colors">DNC COMPUTERZ</h3>
+            <p class="mt-3 max-w-md text-mute leading-relaxed">Dee’s current pile on a public lot. Pick a ticket, email the hold. Not Shopify. Not a Facebook album.</p>
+            <p class="mt-4 text-sm font-semibold text-paper group-hover:text-electric">dnc-computerz.vercel.app →</p>
+          </div>
+        </a>
+
+        <a href="https://c-anything.vercel.app" target="_blank" rel="noopener noreferrer" class="group grid md:grid-cols-12 gap-6 py-8 md:py-10 items-stretch">
+          <div class="md:col-span-5 bg-void border border-paper/10 p-6 min-h-[12rem] flex flex-col justify-end overflow-hidden">
+            <p class="text-[10px] tracking-[0.28em] uppercase text-mute">Call sign · one letter</p>
+            <p class="mt-2 font-black leading-none text-[7rem] tracking-tighter">C.</p>
+            <p class="text-sm text-paper/60">Wants: anything.</p>
+          </div>
+          <div class="md:col-span-7 flex flex-col justify-center">
+            <p class="text-[11px] uppercase tracking-[0.2em] text-electric">Personal / open ticket</p>
+            <h3 class="mt-2 font-black text-3xl md:text-4xl tracking-tight group-hover:text-electric transition-colors">C.</h3>
+            <p class="mt-3 max-w-md text-mute leading-relaxed">A door, not a job title. Presence, nights, whatever else — the bones stay, the middle changes.</p>
+            <p class="mt-4 text-sm font-semibold text-paper group-hover:text-electric">c-anything.vercel.app →</p>
+          </div>
+        </a>
+
+        <a href="#start" class="group grid md:grid-cols-12 gap-6 py-8 md:py-10 items-stretch">
+          <div class="md:col-span-5 border border-dashed border-electric/40 p-6 min-h-[12rem] flex flex-col justify-end">
+            <p class="text-[10px] tracking-[0.28em] uppercase text-electric">Open slot</p>
+            <p class="mt-3 font-black leading-[0.85] text-4xl tracking-tight text-paper/40">YOUR<br />SITE</p>
+          </div>
+          <div class="md:col-span-7 flex flex-col justify-center">
+            <p class="text-[11px] uppercase tracking-[0.2em] text-signal">Next</p>
+            <h3 class="mt-2 font-black text-3xl md:text-4xl tracking-tight group-hover:text-electric transition-colors">Yours.</h3>
+            <p class="mt-3 max-w-md text-mute leading-relaxed">Landing page, shop, lot, portfolio, booking — or the odd thing no template covers. If you can’t name it, say what you sell.</p>
+            <p class="mt-4 text-sm font-semibold text-signal group-hover:text-electric">Send a brief →</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section id="do" class="px-5 sm:px-8 py-16 md:py-20 pl-7 sm:pl-10 border-t border-paper/10">
+      <p class="text-[11px] tracking-[0.28em] uppercase text-mute">What we do</p>
+      <h2 class="mt-3 font-black tracking-tight text-4xl md:text-5xl leading-[0.95] max-w-2xl">If you can name the thing, it can ship.</h2>
+      <div class="mt-10 divide-y divide-paper/10 border-y border-paper/10">
+        <div class="py-7 md:grid md:grid-cols-12 md:gap-8 md:items-baseline">
+          <h3 class="md:col-span-4 font-black text-2xl tracking-tight">The shop page</h3>
+          <p class="mt-2 md:mt-0 md:col-span-8 text-mute leading-relaxed max-w-xl">One job. Phone first. People can tap and call, book, or buy. Not a leftover Wix theme.</p>
+        </div>
+        <div class="py-7 md:grid md:grid-cols-12 md:gap-8 md:items-baseline">
+          <h3 class="md:col-span-4 font-black text-2xl tracking-tight">The lot</h3>
+          <p class="mt-2 md:mt-0 md:col-span-8 text-mute leading-relaxed max-w-xl">Inventory on a page. Towers, tickets, weekend holds. When you have stuff to move, the site is the counter.</p>
+        </div>
+        <div class="py-7 md:grid md:grid-cols-12 md:gap-8 md:items-baseline">
+          <h3 class="md:col-span-4 font-black text-2xl tracking-tight">The name</h3>
+          <p class="mt-2 md:mt-0 md:col-span-8 text-mute leading-relaxed max-w-xl">Artist, host, personal. The page is the poster. Short lines. One action. No Linktree chrome.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="px-5 sm:px-8 py-16 md:py-20 pl-7 sm:pl-10 border-t border-paper/10">
+      <p class="text-[11px] tracking-[0.28em] uppercase text-mute">How</p>
+      <h2 class="mt-3 font-black tracking-tight text-4xl md:text-5xl leading-[0.95]">Three moves. Then it’s live.</h2>
+      <ol class="mt-12 grid md:grid-cols-3 gap-10">
+        <li>
+          <p class="font-black text-5xl text-signal leading-none">1</p>
+          <h3 class="mt-4 font-black text-xl">You say the thing</h3>
+          <p class="mt-3 text-mute leading-relaxed">What you sell. Who it’s for. A paragraph is enough. “I don’t know what kind of site” is a valid sentence.</p>
+        </li>
+        <li>
+          <p class="font-black text-5xl text-signal leading-none">2</p>
+          <h3 class="mt-4 font-black text-xl">I send a first draft</h3>
+          <p class="mt-3 text-mute leading-relaxed">Custom HTML. Looks like you. Not cloned from the last job. You review once or twice.</p>
+        </li>
+        <li>
+          <p class="font-black text-5xl text-signal leading-none">3</p>
+          <h3 class="mt-4 font-black text-xl">It ships. You own it.</h3>
+          <p class="mt-3 text-mute leading-relaxed">Domain, host, handoff. The files are yours. No platform hostage fee for a page that should just exist.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section id="start" class="px-5 sm:px-8 py-16 md:py-24 pl-7 sm:pl-10 border-t border-paper/10">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div>
+          <p class="text-[11px] tracking-[0.28em] uppercase text-mute">Start</p>
+          <h2 class="mt-3 font-black tracking-tight text-4xl md:text-6xl leading-[0.9]">You don’t need a plan.</h2>
+          <p class="mt-5 max-w-md text-mute leading-relaxed">
+            Write what you sell. I’ll pick the shape.
+            Direct: <a class="text-paper underline decoration-signal underline-offset-4 hover:text-electric" href="mailto:citruswill2@gmail.com">citruswill2@gmail.com</a>
+          </p>
+        </div>
+
+        <div>
+        <form id="brief" class="border border-paper/15 p-6 sm:p-8" novalidate>
+          <fieldset>
+            <legend class="text-[11px] font-semibold uppercase tracking-[0.18em] text-mute">What is it</legend>
+            <div class="mt-3 flex flex-wrap gap-2" id="kinds">
+              <label class="cursor-pointer">
+                <input type="radio" name="kind" value="shop" class="peer sr-only" />
+                <span class="inline-flex min-h-11 items-center border border-paper/20 px-4 py-2 text-sm peer-checked:border-electric peer-checked:text-electric peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-electric">A shop</span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="kind" value="lot" class="peer sr-only" />
+                <span class="inline-flex min-h-11 items-center border border-paper/20 px-4 py-2 text-sm peer-checked:border-electric peer-checked:text-electric peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-electric">A lot / inventory</span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="kind" value="name" class="peer sr-only" />
+                <span class="inline-flex min-h-11 items-center border border-paper/20 px-4 py-2 text-sm peer-checked:border-electric peer-checked:text-electric peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-electric">Music / personal</span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="kind" value="unknown" class="peer sr-only" checked />
+                <span class="inline-flex min-h-11 items-center border border-paper/20 px-4 py-2 text-sm peer-checked:border-signal peer-checked:text-signal peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-electric">I don’t know yet</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <label class="mt-6 block text-[11px] font-semibold uppercase tracking-[0.16em] text-mute" for="name">Your name</label>
+          <input id="name" name="name" required autocomplete="name" class="mt-2 w-full min-h-12 bg-void border border-paper/20 px-3 text-paper outline-none focus:border-electric" />
+          <p id="err-name" class="mt-1 text-sm text-signal hidden" role="alert">Name is required.</p>
+
+          <label class="mt-5 block text-[11px] font-semibold uppercase tracking-[0.16em] text-mute" for="email">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email" class="mt-2 w-full min-h-12 bg-void border border-paper/20 px-3 text-paper outline-none focus:border-electric" />
+          <p id="err-email" class="mt-1 text-sm text-signal hidden" role="alert">Need a real email so I can write back.</p>
+
+          <label class="mt-5 block text-[11px] font-semibold uppercase tracking-[0.16em] text-mute" for="sell">What you sell / do</label>
+          <textarea id="sell" name="sell" required rows="4" placeholder="Haircuts. Used towers. A band. A food truck. One sentence is enough." class="mt-2 w-full min-h-[7rem] resize-y bg-void border border-paper/20 px-3 py-3 text-paper outline-none focus:border-electric"></textarea>
+          <p id="err-sell" class="mt-1 text-sm text-signal hidden" role="alert">Say what you sell, even if the site type is unknown.</p>
+
+          <p id="form-error" class="mt-4 text-sm text-signal hidden" role="alert" tabindex="-1"></p>
+
+          <button type="submit" id="send" class="mt-6 inline-flex min-h-12 w-full sm:w-auto items-center justify-center bg-signal text-white px-6 py-3 text-sm font-semibold hover:bg-electric hover:text-void transition-colors disabled:opacity-50">
+            Send brief
+          </button>
+        </form>
+
+        <div id="sent" class="hidden border border-electric/40 p-8">
+          <p class="text-[11px] uppercase tracking-[0.2em] text-electric">Sent</p>
+          <h2 class="mt-3 font-black text-4xl tracking-tight">Got it.</h2>
+          <p class="mt-3 text-mute leading-relaxed">Your mail app should open. If it doesn’t, write <a class="text-paper underline decoration-signal underline-offset-4" href="mailto:citruswill2@gmail.com">citruswill2@gmail.com</a> yourself.</p>
+        </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="px-5 sm:px-8 py-8 pl-7 sm:pl-10 border-t border-paper/10 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-mute">
+    <p class="font-black text-paper">REDLINE<span class="text-signal">/</span> client-owned files</p>
+    <p>Tailwind + anime.js · ~0.5s load · <a class="hover:text-electric" href="mailto:citruswill2@gmail.com">citruswill2@gmail.com</a></p>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      if (!window.anime) return;
-      anime({
-        targets: "#top, #why, #price, #how, #work, #hit",
-        opacity: [0, 1],
-        translateY: [12, 0],
-        duration: 500,
-        delay: anime.stagger(70),
-        easing: "easeOutQuad"
+    (function () {
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (window.anime && !reduce) {
+        anime({
+          targets: "[data-hero]",
+          translateY: [24, 0],
+          opacity: [0, 1],
+          delay: anime.stagger(80),
+          duration: 700,
+          easing: "easeOutCubic"
+        });
+      }
+
+      var MAIL = "citruswill2@gmail.com";
+      var form = document.getElementById("brief");
+      var sent = document.getElementById("sent");
+      var summary = document.getElementById("form-error");
+
+      function show(id, on) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle("hidden", !on);
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var name = document.getElementById("name").value.trim();
+        var email = document.getElementById("email").value.trim();
+        var sell = document.getElementById("sell").value.trim();
+        var kindInput = form.querySelector('input[name="kind"]:checked');
+        var kind = kindInput ? kindInput.value : "unknown";
+        var bad = false;
+
+        show("err-name", !name);
+        show("err-email", !email || !form.email.checkValidity());
+        show("err-sell", !sell);
+        if (!name || !email || !form.email.checkValidity() || !sell) bad = true;
+
+        if (bad) {
+          summary.textContent = "Fix the fields marked in red, then send again.";
+          summary.classList.remove("hidden");
+          summary.focus();
+          return;
+        }
+        summary.classList.add("hidden");
+
+        var kindLabel = {
+          shop: "A shop",
+          lot: "A lot / inventory",
+          name: "Music / personal",
+          unknown: "I don't know yet"
+        }[kind] || kind;
+
+        var body =
+          "NAME: " + name + "\n" +
+          "EMAIL: " + email + "\n" +
+          "KIND: " + kindLabel + "\n" +
+          "SELLS: " + sell;
+
+        form.classList.add("hidden");
+        sent.classList.remove("hidden");
+        window.location.href =
+          "mailto:" + MAIL +
+          "?subject=" + encodeURIComponent("REDLINE brief — " + name) +
+          "&body=" + encodeURIComponent(body);
       });
-    });
+    })();
   </script>
 </body>
 </html>
